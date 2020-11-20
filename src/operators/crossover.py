@@ -33,8 +33,8 @@ def vectorized_hypersphere_crossover(mating_pool: np.array, n_offspring: int) ->
 
     :return: population array after applying crossover, with shape (N_INDIVIDUALS, N_OBJECTIVE_DIMS, )
     """
-    mating_pool = mating_pool[np.random.randint(0, mating_pool.shape[0], n_offspring * 2)]
-    mating_pool = mating_pool.reshape(n_offspring, 2, mating_pool.shape[-1])
+    # mating_pool = mating_pool[np.random.randint(0, mating_pool.shape[0], n_offspring * 2)]
+    # mating_pool = mating_pool.reshape(n_offspring, 2, mating_pool.shape[-1])
 
     x = mating_pool[:, 0, :]
     y = mating_pool[:, 1, :]

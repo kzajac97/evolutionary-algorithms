@@ -13,10 +13,10 @@ def roulette_selection(
     :param population: array of individual specimen
     :param objective: objective function, must take in array and return fitness value
 
-    :return: array of selected mating pairs with shape (POPULATION_SIZE, 2)
+    :return: array of selected mating pairs with shape (POPULATION_SIZE, SPECIMEN_DIM, 2)
     """
     fitness = np.apply_along_axis(objective, 1, population)
-    probabilities = np.cumsum(normalize(fitness.reshape(-1, 1), norm="l1"))
+    probabilities = np.cumsum(normalize(fitness.reshape(1, -1), norm="l1"))
 
-    selected = np.vectorize(lambda value: len(np.where(value > probabilities)[0]))(np.random.rand(len(population * 2)))
-    return population[selected].reshape(len(population), 2)
+    selected = np.vectorize(lambda value: len(np.where(value > probabilities)[0]))(np.random.rand(len(population) * 2))
+    return population[selected].reshape(population.shape + (2, ))
